@@ -29,7 +29,7 @@ Get an index of your cached models use the plural form of the model's class name
 $permissions = cache('permissions')
 ```
 
-Get a specific instance using the instance's route key. (Your model's route key defaults to it's id)
+Get a specific instance using the instance's route key. _(Defaults to the model's id)_
 ```
 $permission = cache('permissions:1')
 ```
