@@ -1,6 +1,8 @@
 # laravel-model-stash
 Easily maintain a "forever" cache of your models.
 
+*Disclaimer: This trait is best used on models which you query often but rarely create, update or delete.*
+
 ## Installation
 ##### 1.) Install via composer
 ```
@@ -38,8 +40,6 @@ If you use a slug for your route key then your cache keys become significantly m
 ```
 $permission = cache('permissions:create-user')
 ```
-
-*Disclaimer: This trait is best used on models which you query often but rarely create, update or delete.*
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)
