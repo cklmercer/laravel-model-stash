@@ -1,0 +1,16 @@
+{
+    "name": "cklmercer/laravel-model-stash",
+    "description": "Easily maintain a \"forever\" cache of your models.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cody Mercer",
+            "email": "me@codymercer.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "^5.2"
+    }
+}
