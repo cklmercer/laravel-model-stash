@@ -20,6 +20,25 @@ class Permission extends Models
 }
 ```
 
+Now, whenever you create/update/delete/restore an instance of your model your cache will automatically be updated.
+
+##### 2.) Access you cached models
+
+Get an index of your cached models.
+```
+$permissions = cache('permissions')
+```
+
+Get a specific instance using the instance's route key. (Your model's route key defaults to it's id)
+```
+$permission = cache('permissions:1')
+```
+
+If you use a slug for your route key then your cache keys become significantly more readable.
+```
+$permission = cache('permissions:create-user')
+```
+
 *Disclaimer: This trait is best used on models which you query often but rarely create, update or delete.*
 
 ## License
