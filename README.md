@@ -26,7 +26,7 @@ Now, whenever you create/update/delete/restore an instance of your model your ca
 
 ##### 2.) Access you cached models
 
-Get an index of your cached models use the plural form of the model's class name.
+Get an index of your cached models using the plural form of the model's class name.
 ```
 $permissions = cache('permissions')
 ```
