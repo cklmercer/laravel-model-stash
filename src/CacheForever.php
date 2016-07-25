@@ -12,13 +12,13 @@ trait CacheForever
     public static function bootCacheForever()
     {
         self::created(function ($model) {
-            $model->cacheForever();
+            $model->cacheInstance();
             $model->cacheAll();
         });
 
         self::updated(function ($model) {
             $model->forgetCache();
-            $model->cacheForever();
+            $model->cacheInstance();
             $model->cacheAll();
         });
 
@@ -40,11 +40,11 @@ trait CacheForever
      */
     public function cacheAll()
     {
-        $indexCacheKey = str_plural($this->getCachePrefix());
+        $cacheName = $this->getCacheName();
 
-        Cache::forget($indexCacheKey);
+        Cache::forget($cacheName);
 
-        Cache::rememberForever($indexCacheKey, function () {
+        Cache::rememberForever($cacheName, function () {
             return $this->all();
         });
     }
@@ -54,9 +54,9 @@ trait CacheForever
      *
      * @return void
      */
-    public function cacheForever()
+    public function cacheInstance()
     {
-        Cache::rememberForever($this->getCachePrefix() . ':' . $this->getRouteKey(), function () {
+        Cache::rememberForever($this->getCacheName().':'.$this->getCacheKey(), function () {
             return $this;
         });
     }
@@ -68,16 +68,30 @@ trait CacheForever
      */
     public function forgetCache()
     {
-        Cache::forget($this->getCachePrefix() . ':' . $this->getRouteKey());
+        Cache::forget($this->getCacheName().':'.$this->getCacheKey());
     }
 
     /**
-     * Get the model's cache prefix.
+     * Get the model's cache key.
      *
      * @return string
      */
-    public function getCachePrefix()
+    public function getCacheKey()
     {
-        return str_slug(last(explode('\\', get_class($this))));
+        return isset($this->cacheKey)
+            ? $this->{$this->cacheKey}
+            : $this->getRouteKey();
+    }
+
+    /**
+     * Get the model's cache name.
+     *
+     * @return string
+     */
+    public function getCacheName()
+    {
+        return isset($this->cacheName) 
+            ? $this->cacheName
+            : str_plural(str_slug(last(explode('\\', get_class($this)))));
     }
 }
