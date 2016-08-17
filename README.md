@@ -1,7 +1,7 @@
 # laravel-model-stash
 Easily maintain a "forever" cache of your models.
 
-*Disclaimer: This trait is best used on models which you query often but rarely create, update or delete.*
+*Disclaimer: This trait is best used on models which you rarely create, update or delete.*
 
 ## Installation
 ##### 1.) Install via composer
