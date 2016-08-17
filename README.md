@@ -91,7 +91,7 @@ class Role extends Model
 }
 ```
 ```
-$role = \Cache::get('roles:create-user')
+$role = \Cache::get('roles:admin')
 ```
 
 ## License
