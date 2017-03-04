@@ -6,13 +6,13 @@ Easily maintain a "forever" cache of your models.
 ## Installation
 ##### 1.) Install via composer
 
-```
+```bash
 composer require cklmercer/laravel-model-stash
 ```
 
 ## Usage
 ##### 1.) Use the trait `Cklmercer\ModelStash\CacheForever` within your model.
-```
+```php
 // Role.php
 
 use Cklmercer\ModelStash\CacheForever;
@@ -32,13 +32,13 @@ Now, whenever you create/update/delete/restore an instance of your model your ca
 
 *Note: The default cache name will be the plural form of your model's class name.*
 
-```
+```php
 $roles = \Cache::get('roles')
 ```
 
 You can change your model's cache name by defining a `$cacheName` property on your model.
 
-```
+```php
 // Role.php
 
 use Cklmercer\ModelStash\CacheForever;
@@ -58,19 +58,19 @@ class Role extends Model
     // truncated for brevity..
 }
 ```
-```
+```php
 $roles = \Cache::get('cachedRoles');
 ```
 
 ##### 3.) Get a specific instance of a cached model.
 *Note: The convention used to get a specific instance is "cache-name:cache-key", with cache-key defaulting to your model's route key.*
-```
+```php
 $role = \Cache::get('roles:1')
 ```
 
 You can change your model's cache key by defining a `$cacheKey` property on your model.
 
-```
+```php
 // Role.php
 
 use Cklmercer\LaravelModelStash\CacheForever;
@@ -90,7 +90,7 @@ class Role extends Model
      // truncated for brevity..
 }
 ```
-```
+```php
 $role = \Cache::get('roles:admin')
 ```
 
